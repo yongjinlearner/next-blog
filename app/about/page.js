@@ -1,4 +1,7 @@
-import React from 'react';
+import Image from "next/image";
+
 export default function About() {
-    return <h1>Hello</h1>
+    return (
+        <p>A little bit about myself</p>
+    );
 }
