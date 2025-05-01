@@ -8,7 +8,7 @@ export default function Navbar() {
       <ul className="flex space-x-15">
         <li><Link href="/">Home</Link></li>
         <li><Link href="/about">About</Link></li>
-        <li><Link href="/contact">Contact</Link></li>
+        <li><Link href="/blog">Blog</Link></li>
       </ul>
     </header>
   );
