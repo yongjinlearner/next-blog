@@ -1,15 +1,24 @@
-import Link from 'next/link';
-import React from 'react';
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Navbar() {
   return (
-    <header className="flex justify-between items-center bg-(--header) p-4 px-10">
-      <h1 className="text-3xl font-playwrite text-normal"><Link href="/">Yongjin Lee</Link></h1>
-      <ul className="flex space-x-15">
+    <nav className='flex justify-between px-6 bg-(--nav-color)'>
+      <div>
+        <Image
+          src="/logo.png"
+          width={100}
+          height={100}
+          alt="logo"
+        />
+      </div>
+      <ul className='flex space-x-4 items-center space-x-20 text-xl font-bold'>
         <li><Link href="/">Home</Link></li>
-        <li><Link href="/about">About</Link></li>
+        <li><Link href="/about">About Me</Link></li>
         <li><Link href="/blog">Blog</Link></li>
+        <li><Link href="chat">Chatbot</Link></li>
       </ul>
-    </header>
-  );
+    </nav>
+  )
 }
