@@ -3,13 +3,7 @@ import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-
-const handleSubscription = async (formData) => {
-    'use server'
-    // Handle the form submission here
-    const email = formData.get('email')
-    console.log(email)
-}
+import { handleSubscription } from '@/actions/handleSubscription';
 
 export default function BlogView() {
     return (
