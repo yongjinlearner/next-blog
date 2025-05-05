@@ -13,11 +13,11 @@ export default function Navbar() {
           alt="logo"
         />
       </div>
-      <ul className='flex space-x-4 items-center space-x-20 text-xl font-bold'>
+      <ul className='flex space-x-4 items-center space-x-20 text-xl font-bold font-serif'>
         <li><Link href="/">Home</Link></li>
         <li><Link href="/about">About Me</Link></li>
         <li><Link href="/blog">Blog</Link></li>
-        <li><Link href="chat">Chatbot</Link></li>
+        <li><Link href="/chatbot">Chatbot</Link></li>
       </ul>
     </nav>
   )

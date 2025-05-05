@@ -11,3 +11,59 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* styles/globals.css */
+.btn-primary {
+  @apply mt-4 px-4 py-2 bg-green-800 text-white rounded hover:bg-green-500 duration-400 ease-in-out;
+}
+
+/* Slide in from the left */
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide in from the right */
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide in from the left with hidden start */
+@keyframes slide-in-left-hidden {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0; /* Start hidden */
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1; /* End fully visible */
+  }
+}
+
+/* Tailwind animation utilities */
+.animate-slide-in-left-hidden {
+  animation: slide-in-left-hidden 1s ease-out forwards; /* Ensure it stays in the final state */
+  opacity: 0; /* Ensure the element is hidden before the animation starts */
+}
+
+/* Tailwind animation utilities */
+.animate-slide-in-left {
+  animation: slide-in-left 1s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 1s ease-out;
+}

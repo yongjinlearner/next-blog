@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.1",
     "crypto": "^1.0.1",
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.1",
