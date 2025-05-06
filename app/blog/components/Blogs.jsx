@@ -27,7 +27,7 @@ const blogList = blogs.map((blog, index) => {
             <div className="flex flex-col ml-4 flex-1 overflow-hidden text-left">
                 <h2 className="text-xl font-bold truncate">{blog.title}</h2>
                 <h2 className="text-gray-700 text-sm line-clamp-3">{blog.date}</h2>
-                <p className="text-gray-700 text-sm line-clamp-3">{blog.content}</p>
+                <p className="text-gray-700 text-sm line-clamp-3">{blog.preview}</p>
                 <Link href={`/blog/${blog.id}`} className="text-blue-500 hover:underline text-sm">
                     Read more
                 </Link>
