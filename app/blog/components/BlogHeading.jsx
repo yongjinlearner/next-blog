@@ -3,17 +3,13 @@ import blogs from '@/lib/dummyBlog.js';
 
 export default function BlogHeading({blogId, commentCount}) {
 
-    console.log("blogs", blogs);
     const blog = blogs.find((blog)=> {
-        console.log("blogId", blogId);
-        console.log("blogID", blog.id);
         if (blog.id == blogId) {
             return blog;
         }
         console.log("not found")
     })
 
-    console.log("blog", blog);
     if (!blog) {
         return <div>Blog not found</div>;
     }
