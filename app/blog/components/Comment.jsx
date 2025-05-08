@@ -1,8 +1,6 @@
 import React from 'react';
-import LoadGif from '@/app/blog/components/GIF/GifById'; // load gif from giphy
-
-// retrieve comments from the database
-import showComments from '@/lib/commentList'; // fake comments for testing
+import GifById from '@/app/blog/components/GIF/GifById';
+import showComments from '@/lib/commentList'; 
 
 export default async function Comment({blogId}){
     
@@ -18,7 +16,7 @@ export default async function Comment({blogId}){
                     {/*<p className="text-sm text-gray-500">{comment.time}</p>*/}
                 </div>
                 <p className="text-gray-700">{comment.comment}</p>
-                {comment.gifId != '' && <LoadGif gifId={comment.gifId} />}
+                <GifById gifId={comment.gifId} />
             </div>
         )
     })

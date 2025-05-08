@@ -1,6 +1,6 @@
 import React from 'react'
 import Blogs from './components/Blogs'
-import { handleSubscription } from '@/actions/handleSubscription';
+import { handleSubscription } from '@/actions/blog/handleSubscription';
 
 export default function Blog() {
     return (

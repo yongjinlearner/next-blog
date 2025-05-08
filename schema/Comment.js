@@ -1,4 +1,3 @@
-import { Gif } from "@giphy/react-components";
 import mongoose from "mongoose";
 
 const CommentSchema = new mongoose.Schema({

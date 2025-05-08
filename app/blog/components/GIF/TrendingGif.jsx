@@ -2,6 +2,7 @@
 'use client';
 
 import React, {useState} from 'react';
+import { gf } from '@/lib/giphy'
 import { Grid } from '@giphy/react-components';
 
 const fetchGifs = (offset) => gf.trending({ offset, limit: 10 });

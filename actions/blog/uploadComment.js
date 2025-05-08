@@ -9,11 +9,12 @@ export default async function uploadComment(formData) {
     const blogId = formData.get('blogId');
     const comment = formData.get('comment');
     const nickname = formData.get('nickname');
+    const gifId = formData.get('gifId');
 
     console.log(`${nickname} coomment ${comment} on blog ${blogId}`);
 
     try {
-        const newComment = await Comment.create({ blogId, nickname, comment });
+        const newComment = await Comment.create({ blogId, nickname, comment, gifId });
         console.log('Comment uploaded:', newComment);
 
         console.log('Now retrieving renewed comments to post on the blog...');

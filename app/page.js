@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import typeWriter from '@/actions/typeWriter'
+import typeWriter from '@/actions/general/typeWriter'
 
 export default function Home() {
   const text = typeWriter()

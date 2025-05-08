@@ -1,16 +1,23 @@
+'use client'
 import React, { useEffect, useState } from 'react'
+import { gf } from '@/lib/giphy'
 import { Gif } from '@giphy/react-components'
 
-const gifById = (id) => {
-    return gf.gif(id).then(res => res.data)
+console.log('Giphy client initialized:', gf)
+
+const gifById = async (id) => {
+    const res = await gf.gif(id)
+    console.log('GIF by ID:', res.data)
+    return res.data
 }
 
-export default function GifById({ id }) {
+export default function GifById({ gifId }) {
+    if (!gifId) return null
     const [gif, setGif] = useState(null)
 
     useEffect(() => {
-        gifById(id).then(setGif)
-    }, [id])
+        gifById(gifId).then(setGif)
+    }, [gifId])
 
     if (!gif) return <p>Loading...</p>
 

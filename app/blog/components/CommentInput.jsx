@@ -1,8 +1,7 @@
 'use client'
 import React, {useState, useEffect} from 'react';
-import uploadComment from '@/actions/uploadComment';
+import uploadComment from '@/actions/blog/uploadComment';
 import TrendingGifs from '@/app/blog/components/GIF/TrendingGif';
-import { Grid } from '@giphy/react-components'
 
 export default function CommentInput({ blogId }) {
 

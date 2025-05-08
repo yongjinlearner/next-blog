@@ -4,20 +4,19 @@ import Comment from '@/app/blog/components/Comment';
 import CommentInput from '@/app/blog/components/CommentInput';
 
 import blogs from '@/lib/dummyBlog.js';
-import fakeComments from '@/lib/commentList';
-import parseBlogContent  from '@/actions/parseBlogContent';
+import parseBlogContent  from '@/actions/blog/parseBlogContent';
 
-export default function Page({ params }) {
-    const { slug } = params;
-    console.log('slug', slug, typeof slug);
+export default async function Page(props) {
+    const { params } = props;
+    const slug = Number(params.slug);
 
-    const blogContent = blogs.find((blog) => blog.id == slug);
+    const blogContent = blogs.find((blog) => blog.id === slug);
 
     return (
         <div className='flex flex-col items-center gap-5 min-h-screen'>
             <BlogHeading blogId={slug} commentCount={1}/>
             <div className="blog-content w-[50vw]">
-                {parseBlogContent ? (
+                {blogContent ? (
                     <div className="flex flex-col gap-5">
                         {parseBlogContent(blogContent.content)}
                     </div>
@@ -25,8 +24,8 @@ export default function Page({ params }) {
                     <p>Blog not found</p>
                 )}
             </div>
-            <CommentInput blogId={Number(slug)}/>
-            <Comment blogId={Number(slug)}/>
+            <CommentInput blogId={slug}/>
+            <Comment blogId={slug}/>
         </div>
     );
 }
