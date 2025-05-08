@@ -4,7 +4,7 @@ import Comment from '@/app/blog/components/Comment';
 import CommentInput from '@/app/blog/components/CommentInput';
 
 import blogs from '@/lib/dummyBlog.js';
-import fakeComments from '@/lib/fakeComments';
+import fakeComments from '@/lib/commentList';
 import parseBlogContent  from '@/actions/parseBlogContent';
 
 export default function Page({ params }) {

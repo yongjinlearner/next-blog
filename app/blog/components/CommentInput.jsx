@@ -1,13 +1,14 @@
 'use client'
 import React, {useState, useEffect} from 'react';
 import uploadComment from '@/actions/uploadComment';
-import TrendingGifs from '@/app/blog/components/TrendingGif';
+import TrendingGifs from '@/app/blog/components/GIF/TrendingGif';
 import { Grid } from '@giphy/react-components'
 
 export default function CommentInput({ blogId }) {
 
     const [showGif, setShowGif] = useState(false)
-
+    const [selectedGif, setSelectedGif] = useState(null)
+    console.log('Selected GIF:', selectedGif);
 
 
 
@@ -15,6 +16,11 @@ export default function CommentInput({ blogId }) {
         event.preventDefault(); // Prevent default form submission behavior
 
         const formData = new FormData(event.target);
+
+        if (selectedGif == null && formData.get('comment') == '') {
+            alert('Please enter a comment or select a GIF');
+            return;
+        }
 
         try {
             await uploadComment(formData); // Call the uploadComment action
@@ -67,12 +73,17 @@ export default function CommentInput({ blogId }) {
                 name="comment"
                 placeholder="Write your comment..."
                 className="border border-gray-300 p-2 rounded-md"
-                required
             />
             <button onClick={handleGIF} className="bg-gray-200 text-gray-700 p-2 rounded-md">
                 GIF
             </button>
-            {showGif && <TrendingGifs/>}
+            <input
+                type="hidden"
+                name="gifId"
+                value={selectedGif ? selectedGif : ''}
+            >
+            </input>
+            {showGif && <TrendingGifs setSelectedGif={setSelectedGif}/>}
             <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
                 Submit Comment
             </button>

@@ -1,16 +1,19 @@
 // components/TrendingGifs.jsx
 'use client';
 
-import React from 'react';
+import React, {useState} from 'react';
 import { Grid } from '@giphy/react-components';
-import { GiphyFetch } from '@giphy/js-fetch-api';
-
-console.log('hello world')
-const gf = new GiphyFetch(process.env.NEXT_PUBLIC_GIPHY_API_KEY); // Replace with your actual API key
 
 const fetchGifs = (offset) => gf.trending({ offset, limit: 10 });
 
-const TrendingGifs = () => {
+export default function TrendingGifs({setSelectedGif}) {
+  
+  const handleGifClick = (gif, e) => {
+    e.preventDefault();
+    console.log('GIF clicked:', gif.id);
+    setSelectedGif(gif.id); // Set the selected GIF ID
+  }
+
   return (
     <div 
         style={{ 
@@ -25,9 +28,8 @@ const TrendingGifs = () => {
         columns={3}
         gutter={6}
         fetchGifs={fetchGifs}
+        onGifClick={handleGifClick}
       />
     </div>
   );
 };
-
-export default TrendingGifs;
