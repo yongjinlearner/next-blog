@@ -1,9 +1,21 @@
-import React from 'react';
+'use client'
+import React, {useState} from 'react';
 import blogs from '@/lib/dummyBlog.js';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const blogList = blogs.map((blog, index) => {
+
+
+export default function Blogs() {
+    const [visibleItemCount, setVisibleItemCount] = useState(2)
+
+const handleLoadMore = () => {
+    setVisibleItemCount(prevCount => prevCount + 2);
+}
+
+const slicedBlogs = blogs.slice(0, visibleItemCount)
+
+const blogList = slicedBlogs.map((blog, index) => {
     return (
         <div
             key={index}
@@ -35,11 +47,10 @@ const blogList = blogs.map((blog, index) => {
         </div>
     );
 });
-
-export default function Blogs() {
     return (
-        <div className="flex flex-col items-center justify-center gap-5">
+        <div className="flex flex-col items-center justify-center gap-5 min-h-screen">
             {blogList}
+            {blogs.length>visibleItemCount && <button onClick={handleLoadMore} className="btn-primary">Load More</button>}
         </div>
     );
 }

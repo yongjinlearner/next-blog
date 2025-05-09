@@ -1,7 +1,7 @@
 'use client'
 import React, {useState, useEffect} from 'react';
 import uploadComment from '@/actions/blog/uploadComment';
-import TrendingGifs from '@/app/blog/components/GIF/TrendingGif';
+import GiphyInterface from '@/app/blog/components/GIF/GiphyInterface';
 
 export default function CommentInput({ blogId }) {
 
@@ -82,11 +82,11 @@ export default function CommentInput({ blogId }) {
                 value={selectedGif ? selectedGif : ''}
             >
             </input>
-            {showGif && <TrendingGifs setSelectedGif={setSelectedGif}/>}
             <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
                 Submit Comment
             </button>
         </form>
+        {showGif && <GiphyInterface setSelectedGif={setSelectedGif}/>}
         </div>
     );
 }
