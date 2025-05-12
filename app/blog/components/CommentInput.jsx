@@ -1,22 +1,18 @@
 'use client'
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import uploadComment from '@/actions/blog/uploadComment';
 import TrendingGifs from '@/app/blog/components/GIF/TrendingGif';
 
 export default function CommentInput({ blogId }) {
-
     const [showGif, setShowGif] = useState(false)
-    const [selectedGif, setSelectedGif] = useState(null)
-    console.log('Selected GIF:', selectedGif);
-
-
+    const [selectedGifId, setSelectedGifId] = useState(null)
 
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent default form submission behavior
 
         const formData = new FormData(event.target);
 
-        if (selectedGif == null && formData.get('comment') == '') {
+        if (selectedGifId == null && formData.get('comment') == '') {
             alert('Please enter a comment or select a GIF');
             return;
         }
@@ -29,23 +25,6 @@ export default function CommentInput({ blogId }) {
         }
     };
 
-    const loadGifForm = async (event) => {
-        event.preventDefault(); // Prevent default button behavior
-        console.log('Loading GIF form...');
-        try {
-            fetch('/api/giphy')
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log('GIFs:', data);
-                })
-                .catch((error) => {
-                    console.error('Error fetching GIFs:', error);
-                });
-        } catch (error) {
-            console.error('Error loading GIF form:', error);
-        }
-    }
-
     const handleGIF = (event) => {
         event.preventDefault(); // Prevent default button behavior
         setShowGif(!showGif);
@@ -55,38 +34,38 @@ export default function CommentInput({ blogId }) {
     return (
         <div className="flex flex-col items-center gap-5 border-t-2 w-[50vw] border-gray-300 pt-5">
             <h2 className="text-2xl font-bold font-serif">Leave a Comment</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-[30vw]">
-            <input
-                type="hidden"
-                name="blogId"
-                value={blogId}
-            />
-            <input
-                type="text"
-                name="nickname"
-                placeholder="Nickname"
-                className="border border-gray-300 p-2 rounded-md"
-                required
-            />
-            <textarea
-                name="comment"
-                placeholder="Write your comment..."
-                className="border border-gray-300 p-2 rounded-md"
-            />
-            <button onClick={handleGIF} className="bg-gray-200 text-gray-700 p-2 rounded-md">
-                GIF
-            </button>
-            <input
-                type="hidden"
-                name="gifId"
-                value={selectedGif ? selectedGif : ''}
-            >
-            </input>
-            {showGif && <TrendingGifs setSelectedGif={setSelectedGif}/>}
-            <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
-                Submit Comment
-            </button>
-        </form>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-[30vw]">
+                <input
+                    type="hidden"
+                    name="blogId"
+                    value={blogId}
+                />
+                <input
+                    type="text"
+                    name="nickname"
+                    placeholder="Nickname"
+                    className="border border-gray-300 p-2 rounded-md"
+                    required
+                />
+                <textarea
+                    name="comment"
+                    placeholder="Write your comment..."
+                    className="border border-gray-300 p-2 rounded-md"
+                />
+                <button onClick={handleGIF} className="bg-gray-200 text-gray-700 p-2 rounded-md">
+                    GIF
+                </button>
+                <input
+                    type="hidden"
+                    name="gifId"
+                    value={selectedGifId ? selectedGifId : ''}
+                >
+                </input>
+                {showGif && <TrendingGifs setSelectedGif={setSelectedGifId} />}
+                <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
+                    Submit Comment
+                </button>
+            </form>
         </div>
     );
 }
