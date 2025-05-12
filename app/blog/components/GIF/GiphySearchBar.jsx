@@ -1,5 +1,12 @@
 'use client'
 import React, { useState, useEffect } from 'react';
+import {
+    Grid, // our UI Component to display the results
+    SearchBar, // the search bar the user will type into
+    SearchContext, // the context that wraps and connects our components
+    SearchContextManager, // the context manager, includes the Context.Provider
+    SuggestionBar, // an optional UI component that displays trending searches and channel / username results
+} from '@giphy/react-components'
 
 export default function GiphySearchBar({setGiphySearch}) {
 
@@ -12,7 +19,7 @@ export default function GiphySearchBar({setGiphySearch}) {
             alert('Please enter a search term');
             return;
         }
-        console.log('Search query:', searchQuery);
+        console.log('(GiphySearchBar.jsx) Search query:', searchQuery);
         
         setGiphySearch(searchQuery); // Set the search query in the parent component
     }

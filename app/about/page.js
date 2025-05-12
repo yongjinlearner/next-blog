@@ -6,7 +6,7 @@ export default function About() {
   const data = staticData.find((item) => item.page === "about");
 
   return (
-    <div className="flex flex-col items-center justify-center gap-10 shadow-2xl shadow-black">
+    <div className="flex flex-col items-center justify-center gap-10">
       <div className="flex flex-col items-center justify-center text-center gap-10 min-h-screen">
         {/* "Who am I?" with slide-in-from-left animation */}
         <h1 className="font-serif text-7xl animate-slide-in-left">Who am I?</h1>

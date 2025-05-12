@@ -1,21 +1,27 @@
 // components/TrendingGifs.jsx
 'use client';
 
-import React, {useState, useEffect, use} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import { gf } from '@/lib/giphy'
 import { Grid } from '@giphy/react-components';
 
 export default function GiphyGridDisplay({ giphySearch, setGifId }) {
 
-    console.log('(GiphyGridDisplay.jsx) Giphy search term:', giphySearch);
+    console.log('(GiphyGridDisplay.jsx) Giphy search term giphySearch:', giphySearch);
+    const [searchTerm, setSearchTerm] = useState('')
 
-    const [updateComponent, setUpdateComponent] = useState(false); // State to trigger re-render
     useEffect(() => {
-        setUpdateComponent(!updateComponent); // Toggle the state to trigger re-render
         console.log('State updated to trigger re-render');
+        setSearchTerm(giphySearch)
     }, [giphySearch]); // Re-run when giphySearch changes
 
-    const fetchGifs = (offset) => gf.trending({ offset, limit: 10 }) ? giphySearch === '' : gf.search(giphySearch, { offset, limit: 10 });
+
+    const fetchTrendingGifs = (offset) => gf.trending({ offset, limit: 10 })
+    console.log('searchTerm', searchTerm)
+    const fetchSearchedGifs = useCallback((offset) => {
+        return gf.search(searchTerm, { offset, limit: 10 });
+    }, [searchTerm]);
+       
     
     const handleGifClick = (gif, e) => {
         e.preventDefault();
@@ -32,13 +38,20 @@ export default function GiphyGridDisplay({ giphySearch, setGifId }) {
                 overflowY: 'scroll', // Enable vertical scrolling 
                 margin: '0 auto' }} 
                 className="bg-green-700 p-5 flex flex-col items-center rounded-lg shadow-lg">
-        <Grid
+        {/*true && <Grid
           width={400}
           columns={3}
           gutter={6}
-          fetchGifs={fetchGifs}
           onGifClick={handleGifClick}
-        />
+          fetchGifs={fetchTrendingGifs}
+          /> */}
+          {true && <Grid
+          width={400}
+          columns={3}
+          gutter={6}
+          onGifClick={handleGifClick}
+          fetchGifs={fetchSearchedGifs}
+          />}
         </div>
     );
 };

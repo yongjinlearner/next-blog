@@ -6,7 +6,7 @@ import GiphyGridDisplay from '@/app/blog/components/GIF/GiphyGridDisplay';
 export default function GiphyBrowsing( {setSelectedGifId} ) {
 
     const [giphySearch, setGiphySearch] = useState(''); // search term for Giphy
-    console.log('Giphy search term:', giphySearch)
+    console.log('(GiphyBrowsing.jsx) Giphy search term:', giphySearch)
     const [gifId, setGifId] = useState('') // IF a gif is selected, this is the id of the selected gif
 
     useEffect(()=>{
