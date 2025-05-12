@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import uploadComment from '@/actions/blog/uploadComment';
-import TrendingGifs from '@/app/blog/components/GIF/TrendingGif';
+import GiphyInterface from '@/app/blog/components/GIF/GiphyInterface';
 
 export default function CommentInput({ blogId }) {
     const [showGif, setShowGif] = useState(false)

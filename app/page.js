@@ -8,7 +8,7 @@ export default function Home() {
   const text = typeWriter()
 
   return (
-    <div className="flex items-center justify-center min-h-screen gap-10 shadow-2xl shadow-black">
+    <div className="flex items-center justify-center min-h-screen gap-10">
       <div>
         <Image
           src="/home-photo.jpeg"

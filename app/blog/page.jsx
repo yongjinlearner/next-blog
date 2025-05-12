@@ -1,5 +1,5 @@
 import React from 'react'
-import Blogs from './components/Blogs'
+import Blogs from './components/BLOGS/Blogs'
 import { handleSubscription } from '@/actions/blog/handleSubscription';
 
 export default function Blog() {
@@ -15,7 +15,6 @@ export default function Blog() {
                 </form>
             </div>
             <Blogs />
-            <button className="btn-primary mb-[10vh]">Load More</button>
         </div>
     )
 }

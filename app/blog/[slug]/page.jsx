@@ -1,7 +1,7 @@
 import React from 'react';
-import BlogHeading from '@/app/blog/components/BlogHeading';
-import Comment from '@/app/blog/components/Comment';
-import CommentInput from '@/app/blog/components/CommentInput';
+import BlogHeading from '@/app/blog/components/BLOGS/BlogHeading';
+import Comment from '@/app/blog/components/COMMENTS/Comment';
+import CommentInput from '@/app/blog/components/COMMENTS/CommentInput';
 
 import blogs from '@/lib/dummyBlog.js';
 import parseBlogContent from '@/actions/blog/parseBlogContent';

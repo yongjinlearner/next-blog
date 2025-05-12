@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { gf } from '@/lib/giphy'
 import { Gif } from '@giphy/react-components'
 
-console.log('Giphy client initialized:', gf)
-
 const gifById = async (id) => {
     const res = await gf.gif(id)
     console.log('GIF by ID:', res.data)
