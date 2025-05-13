@@ -1,5 +1,6 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+import { GifContext, GifProvider } from '@/app/blog/components/GifContext'
 import { gf } from '@/lib/giphy'
 import { Gif } from '@giphy/react-components'
 
@@ -9,8 +10,9 @@ const gifById = async (id) => {
     return res.data
 }
 
-export default function GifById({ gifId }) {
-    if (!gifId) return null
+export default function GifById(id) {
+    const { gifId } = useContext(GifContext)
+
     const [gif, setGif] = useState(null)
 
     useEffect(() => {
