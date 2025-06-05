@@ -11,7 +11,7 @@ export default function Home() {
     <div className="flex items-center justify-center min-h-screen gap-10">
       <div>
         <Image
-          src="/home-photo.jpeg"
+          src="/profile.jpeg"
           alt="Hero Image"
           width={300}
           height={200}

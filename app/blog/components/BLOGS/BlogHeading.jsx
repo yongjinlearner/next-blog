@@ -1,7 +1,7 @@
 import React from 'react';
 import blogs from '@/lib/dummyBlog.js';
 
-export default function BlogHeading({ blogId, commentCount }) {
+export default function BlogHeading({ blogId }) {
 
     const blog = blogs.find((blog) => {
         if (blog.id == blogId) {
@@ -22,7 +22,6 @@ export default function BlogHeading({ blogId, commentCount }) {
             </div>
             <div className="flex justify-between gap-5 w-[100%]">
                 <h2 className="text-gray-700 text-sm">{date}</h2>
-                <p className="text-gray-700 text-sm">{commentCount} comments</p>
             </div>
         </div>
     )

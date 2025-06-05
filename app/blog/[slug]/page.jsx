@@ -1,22 +1,32 @@
-import React from 'react';
+'use client'
+import React, { useState, useEffect, use } from 'react';
+
 import BlogHeading from '@/app/blog/components/BLOGS/BlogHeading';
 import Comment from '@/app/blog/components/COMMENTS/Comment';
 import CommentInput from '@/app/blog/components/COMMENTS/CommentInput';
 
-import blogs from '@/lib/dummyBlog.js';
 import parseBlogContent from '@/actions/blog/parseBlogContent';
 import showComments from '@/lib/commentList'
 
-export default async function Page(props) {
+export default function Page(props) {
+    const [blogs, setBlogs] = useState([]);
+    
+        useEffect(() => {
+          fetch('/api/blogs')
+            .then(res => res.json())
+            .then(data =>{ 
+                console.log('Fetched blogs in component:', data)
+                setBlogs(data)});
+        }, []);
     const { params } = props;
-    const slug = Number(params.slug);
+    const slug = params.slug;
+    console.log('Slug:', slug);
 
-    const blogContent = blogs.find((blog) => blog.id === slug);
-    const comments = await showComments(slug);
+    const blogContent = blogs.find((blog) => blog._id === slug);
 
     return (
         <div className='flex flex-col items-center gap-5 min-h-screen'>
-            <BlogHeading blogId={slug} commentCount={comments.length} />
+            <BlogHeading blogId={slug} />
             <div className="blog-content w-[50vw]">
                 {blogContent ? (
                     <div className="flex flex-col gap-5">

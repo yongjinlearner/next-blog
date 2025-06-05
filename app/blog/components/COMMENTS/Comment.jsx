@@ -4,7 +4,7 @@ import showComments from '@/lib/commentList';
 
 export default async function Comment({blogId}){
     
-    const listOfComments = await showComments(blogId);
+    const listOfComments = await showComments();
 
     const comments = listOfComments.filter((comment) => comment.blogId == blogId);
     

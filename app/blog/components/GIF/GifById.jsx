@@ -1,25 +1,32 @@
 'use client'
-import React, { useContext, useState, useEffect } from 'react'
-import { GifContext, GifProvider } from '@/app/blog/components/GifContext'
+
+import React, { useState, useEffect } from 'react'
 import { gf } from '@/lib/giphy'
 import { Gif } from '@giphy/react-components'
 
 const gifById = async (id) => {
-    const res = await gf.gif(id)
-    console.log('GIF by ID:', res.data)
-    return res.data
+    try {
+        const res = await gf.gif(id)
+        console.log('GIF by ID:', res.data)
+        return res.data
+    } catch (err) {
+        console.error('Failed to fetch GIF:', err)
+        return null
+    }
 }
 
-export default function GifById(id) {
-    const { gifId } = useContext(GifContext)
-
+export default function GifById({ gifId }) {
     const [gif, setGif] = useState(null)
 
     useEffect(() => {
-        gifById(gifId).then(setGif)
+        if (gifId) {
+            gifById(gifId).then(setGif)
+        }
     }, [gifId])
 
-    if (!gif) return <p>Loading...</p>
+    if (!gif) return <p></p>
 
-    return <Gif gif={gif} width={200} />
+    return (
+            <Gif gif={gif} width={200} />
+    )
 }

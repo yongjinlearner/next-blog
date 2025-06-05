@@ -1,28 +1,30 @@
 'use server'
-import dbConnect from '@/lib/database';
-import User from '@/schema/User';
-import crypto from 'crypto';
+
+import dbConnect from '@/lib/database'
+import User from '@/schema/User'
+import crypto from 'crypto'
+import sendAuthEmail from '@/actions/email/sendAuthEmail'
 
 export async function handleSubscription(formData) {
-    await dbConnect();
-    const email = formData.get('email')
-    console.log(email)
+  console.log("handling the subscription")
+  await dbConnect()
+  const email = formData.get('email')
+  const id = crypto.randomUUID()
 
-    var id = crypto.randomUUID();
-    console.log(id)
+  const existingUser = await User.findOne({ email })
+  if (existingUser) {
+    return { success: false, message: 'You already subscribed with this email account!' }
+  }
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-        console.log('user already exists')
-        return
+  try {
+    const user = await User.create({ id, email })
+    sendAuthEmail(email)
+    return {
+      success: true,
+      message: 'Thank you for subscribing! A confirmation email has been sent.',
     }
-
-    try {
-        const user = await User.create({ id, email });
-        console.log('User created:', user);
-
-    } catch (error) {
-        console.error('Error creating user:', error);
-
-    }
+  } catch (error) {
+    console.error('Error creating user:', error)
+    return { success: false, message: 'Something went wrong. Try again later.' }
+  }
 }

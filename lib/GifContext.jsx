@@ -6,7 +6,7 @@ export const GifContext = createContext()
 
 // Create a provider component
 export const GifProvider = ({ children }) => {
-    const [gifId, setGifId] = useState('hello!')
+    const [gifId, setGifId] = useState('')
 
 
     return (

@@ -1,28 +1,22 @@
 'use client'
-import React, { useState, useEffect } from 'react';
-import uploadComment from '@/actions/blog/uploadComment';
-import UltimateGif from '@/app/blog/components/GIF/UltimateGif'
+import React, { useState, useContext } from 'react';
+import GifInterface from '@/app/blog/components/GIF/GifInterface'
+import {GifContext} from '@/lib/GifContext'
 
 export default function CommentInput({ blogId }) {
     const [showGif, setShowGif] = useState(false)
-    const [selectedGifId, setSelectedGifId] = useState(null)
+    const { gifId } = useContext(GifContext)
 
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent default form submission behavior
 
         const formData = new FormData(event.target);
 
-        if (selectedGifId == null && formData.get('comment') == '') {
-            alert('Please enter a comment or select a GIF');
-            return;
-        }
-
-        try {
-            await uploadComment(formData); // Call the uploadComment action
-            window.location.reload(); // Automatically reload the page
-        } catch (error) {
-            console.error('Error submitting comment:', error);
-        }
+          await fetch('/api/comments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+          });
     };
 
     const handleGIF = (event) => {
@@ -58,10 +52,10 @@ export default function CommentInput({ blogId }) {
                 <input
                     type="hidden"
                     name="gifId"
-                    value={selectedGifId ? selectedGifId : ''}
+                    value={gifId ? gifId : ''}
                 >
                 </input>
-                {showGif && <UltimateGif />}
+                {showGif && <GifInterface className="w-[50vw]"/>}
                 <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
                     Submit Comment
                 </button>

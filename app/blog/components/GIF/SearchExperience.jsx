@@ -4,13 +4,10 @@ import {
     SearchContext, // the context that wraps and connects our components
     SearchContextManager, // the context manager, includes the Context.Provider
 } from '@giphy/react-components'
+import {GifContext} from '@/lib/GifContext'
 import React, { useContext, useState } from 'react'
-import { GifContext, GifProvider } from '@/app/blog/components/GifContext'
 
-
-
-// the search experience consists of the manager and its child components that use SearchContext
-const SearchExperience = () => (
+export const SearchExperience = () => (
     <SearchContextManager apiKey={process.env.NEXT_PUBLIC_GIPHY_API_KEY} shouldDefaultToTrending={true}>
         <Components className="flex gap-3" />
     </SearchContextManager>
@@ -39,17 +36,7 @@ const Components = () => {
             }}
         >
             <SearchBar />
-            <Grid key={searchKey} columns={3} width={500} fetchGifs={fetchGifs} onGifClick={handleGifClick} />
-        </div>
-    )
-}
-
-export default function UltimateGif() {
-    const { gifId } = useContext(GifContext)
-    return (
-        <div className="flex items-center justify-center bg-green-800 p-5 rounded-md">
-            {gifId !== '' && <SearchExperience />}
-            {gifId === '' && <GifById gifId={gifId} />}
+            <Grid key={searchKey} columns={3} width={350} fetchGifs={fetchGifs} onGifClick={handleGifClick} />
         </div>
     )
 }
