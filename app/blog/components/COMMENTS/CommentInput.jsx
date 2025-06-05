@@ -8,15 +8,20 @@ export default function CommentInput({ blogId }) {
     const { gifId } = useContext(GifContext)
 
     const handleSubmit = async (event) => {
+        console.log('Running handleSubmit');
         event.preventDefault(); // Prevent default form submission behavior
 
         const formData = new FormData(event.target);
+        formData.append('blogId', blogId);
+    
+        await fetch('/api/comments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(formData.entries())),
+        });
 
-          await fetch('/api/comments', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData),
-          });
+        event.target.reset(); // Reset the form after submission
+        window.location.reload(); // Reload the page to show the new comment
     };
 
     const handleGIF = (event) => {

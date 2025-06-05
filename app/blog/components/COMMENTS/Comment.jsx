@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import GifById from '@/app/blog/components/GIF/GifById';
-import showComments from '@/lib/commentList'; 
 
-export default async function Comment({blogId}){
+export default function Comment({blogId}){
     
-    const listOfComments = await showComments();
+    const [comments, setComments] = useState([]);
+        
+        useEffect(() => {
+            fetch('/api/comments', { cache: 'no-store' })
+              .then(res => res.json())
+              .then(data => { 
+                  console.log('Fetched blogs in component:', data)
+                  setComments(data); // <-- set directly
+                  console.log('Comments:', data);
+              });
+            }, []); // Fetch blogs from the API and set the state to array of blogs
 
-    const comments = listOfComments.filter((comment) => comment.blogId == blogId);
+    const thisBlogsComments = comments.filter((comment) => comment.blogId == blogId);
     
-    const commentShow = comments.map((comment, index) => {
+    const sortedComments = thisBlogsComments.sort(
+        (a, b) => new Date(b.time) - new Date(a.time) // newest first
+    );
+
+    const commentShow = sortedComments.map((comment, index) => {
         return (
             <div key={index} className="flex flex-col gap-2 p-4 border-b border-gray-300 w-[40vw]">
                 <div className="flex justify-between items-center">
