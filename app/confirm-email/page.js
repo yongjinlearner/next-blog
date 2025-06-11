@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { confirmEmail } from '@/app/actions/email/confirmEmail';
+import { confirmEmail } from '@/actions/email/confirmEmail';
 
 export default function ConfirmEmail() {
     const searchParams = useSearchParams(); // Access query parameters
