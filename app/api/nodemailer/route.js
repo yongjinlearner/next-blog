@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import sendEmail from '@/app/actions/email/sendEmail';
+import sendEmail from '@/actions/email/sendEmail';
 
 export async function POST(request) {
     const { subject, body } = await request.json();
