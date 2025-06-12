@@ -6,7 +6,7 @@ const parseBlogContent = (content) => {
             case 'image':
                 return (
                     <div key={index} className="flex flex-col items-center">
-                        <img src={item.content} alt={item.alt} className="w-[50vw] h-auto" />
+                        <img src={item.content} alt={item.alt} className="w-[30vw] h-auto" />
                         {item.caption && <p className="text-sm text-gray-500">{item.caption}</p>}
                     </div>
                 );
