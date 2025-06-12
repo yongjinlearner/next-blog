@@ -19,8 +19,8 @@ export default function Blogs() {
     const handleLoadMore = () => {
         setVisibleItemCount(prevCount => prevCount + 4);
     }
-    
-    const slicedBlogs = blogs.slice(0, Math.min(blogs.length, visibleItemCount))
+    const sortedBlogs = [...blogs].sort((a, b) => new Date(b.date) - new Date(a.date));
+    const slicedBlogs = sortedBlogs.slice(0, Math.min(blogs.length, visibleItemCount))
     
     const blogList = slicedBlogs.map((blog, index) => {
         console.log(blog._id);
