@@ -19,7 +19,7 @@ export default function About() {
       <div className="flex flex-col items-center min-h-screen gap-10 border-t-2 border-black pt-10">
         <h1 className="text-center font-serif text-5xl">My recent experiences</h1>
         <Experience />
-        <button className="btn-primary w-[20%]"><a href="/Yongjin Lee CV.pdf" target="_blank" >
+        <button className="btn-primary w-[20%]"><a href="/Yongjin Lee Resume.pdf" target="_blank" >
         Check out my resume</a></button>
       </div>
     </div>
