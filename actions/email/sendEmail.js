@@ -31,7 +31,7 @@ const sendEmail = async (subject, text) => {
         bcc: mySubscribers,
         subject: subject,
         text: text,
-        html: text + " Click <a href='localhost:3000/blog'>HERE</a> to check out the new blog"
+        html: text + " Click <a href='http://tinyurl.com/yongjinlee/blog'>HERE</a> to check out the new blog"
     });
 
     console.log("Message has been sent");
