@@ -18,7 +18,7 @@ export async function handleSubscription(formData) {
 
   try {
     const user = await User.create({ id, email })
-    sendAuthEmail(email)
+    await sendAuthEmail(email)
     return {
       success: true,
       message: 'Thank you for subscribing! A confirmation email has been sent.',
