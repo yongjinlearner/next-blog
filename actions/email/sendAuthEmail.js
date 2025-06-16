@@ -17,23 +17,25 @@ const sendAuthEmail = async (email) => {
     await dbConnect()
     let user = ''
     try {
-            user = await User.find({ email: email })
-            console.log("user found", user)
-        } catch (err) {
-            console.error("Could not fetch emails:", err);
-        }
-    
+        user = await User.find({ email: email })
+        console.log("user found", user)
+    } catch (err) {
+        console.error("Could not fetch emails:", err);
+    }
+
     const userId = user[0].id
     console.log("userId", userId)
-    const confirmationURL = `http://localhost:3000/confirm-email?token=${userId}`
+    const confirmationURL = `http://tinyurl.com/yongjinlee/confirm-email?token=${userId}`
 
-    try {const info = await transporter.sendMail({
-        from: process.env.EMAIL,
-        to: email,
-        subject: "Yongjin's blog: confirm your email address",
-        html: `Click <a href="${confirmationURL}">HERE</a> to confirm your email address`
-    });
-    console.log("email has been sent")} catch (error) { 
+    try {
+        const info = await transporter.sendMail({
+            from: process.env.EMAIL,
+            to: email,
+            subject: "Yongjin's blog: confirm your email address",
+            html: `Click <a href="${confirmationURL}">HERE</a> to confirm your email address`
+        });
+        console.log("email has been sent")
+    } catch (error) {
         console.error("Error sending email:", error);
     }
 }
